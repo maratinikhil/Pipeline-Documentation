@@ -48,7 +48,7 @@ graph LR
     style E fill:#bbf,stroke:#333,stroke-width:2px
     style F fill:#bfb,stroke:#333,stroke-width:2px
 ```
-
+```mermaid
 graph LR
     subgraph CI [Continuous Integration Phase]
         A[Code] -- push --> B[SCM<br>GitHub]
@@ -75,7 +75,7 @@ graph LR
     style F fill:#eee,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
     style G fill:#ffb,stroke:#333,stroke-width:2px
     style H fill:#bfb,stroke:#333,stroke-width:2px
-
+```
 Tools used in CI/CD
 
 1. Jenkins Pipeline
