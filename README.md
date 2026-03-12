@@ -144,3 +144,32 @@ Agents can run on different environments:
 * CentOS
 
 * Windows
+
+
+Jenkins Architecture
+
+
+```mermaid
+graph LR
+    %% Main VM Box
+    Master["<b>VM</b><br>⚙️ Jenkins (Master node)<br>☕ Java (Worker node base)"]
+
+    %% Target Environments
+    DEV["<b>DEV</b><br>☕ (Java) ubuntu"]
+    QA["<b>QA</b><br>☕ (Java) Redhat"]
+    UAT["<b>UAT</b><br>☕ (Java) centos"]
+    PROD["<b>PROD</b><br>☕ (Java) windows"]
+
+    %% Architecture Connections
+    Master --> DEV
+    Master --> QA
+    Master --> UAT
+    Master --> PROD
+
+    %% Styling
+    style Master fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px
+    style DEV fill:#e1f5fe,stroke:#039be5,stroke-width:2px
+    style QA fill:#e1f5fe,stroke:#039be5,stroke-width:2px
+    style UAT fill:#e1f5fe,stroke:#039be5,stroke-width:2px
+    style PROD fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+```
