@@ -60,30 +60,39 @@ graph LR
 ```mermaid
 graph LR
     subgraph CI [Continuous Integration Phase]
-        A[Code] -- push --> B[SCM<br>GitHub]
-        B --> C[Scan<br>SonarQube]
-        C --> D[Build<br>Docker]
-
-        D -- Files --> E[Artifactory<br>JFrog / Nexus]
-        D -- docker --> F([Images])
-
-        F --> G[Registry]
+        A(💻 Code) -- push --> B(🐙 SCM: GitHub)
+        B --> C{{🔎 Scan: SonarQube}}
+        C --> D(🐳 Build: Docker)
+        
+        D -- Files --> E[(📦 Artifactory)]
+        D -- docker --> F([🖼️ Images])
+        
+        F --> G[(🗄️ Registry)]
     end
-
+    
     subgraph CD [Continuous Deployment Phase]
-        E --> H[K8S]
+        E --> H{{☸️ K8s Cluster}}
         G --> H
     end
+    
+    %% Modern Class Definitions for cleaner styling
+    classDef default font-family:sans-serif,font-weight:bold,color:#333;
+    classDef source fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
+    classDef testing fill:#fff3e0,stroke:#fb8c00,stroke-width:2px;
+    classDef storage fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
+    classDef deploy fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
+    classDef intermediary fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,stroke-dasharray: 5 5;
+    
+    %% Applying the styles to the nodes
+    class A,B,D source;
+    class C testing;
+    class E,G storage;
+    class F intermediary;
+    class H deploy;
 
-    %% Styling
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bbf,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#ffb,stroke:#333,stroke-width:2px
-    style F fill:#eee,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
-    style G fill:#ffb,stroke:#333,stroke-width:2px
-    style H fill:#bfb,stroke:#333,stroke-width:2px
+    %% Styling the Subgraph backgrounds with rounded corners
+    style CI fill:#fafafa,stroke:#bdbdbd,stroke-width:2px,rx:10,ry:10
+    style CD fill:#fafafa,stroke:#bdbdbd,stroke-width:2px,rx:10,ry:10
 ```
 
 Tools used in CI/CD
@@ -96,12 +105,20 @@ Tools used in CI/CD
 
 ```mermaid
 graph TD
-    A[Infrastructure Pipeline] --> B[Terraform Automation]
-    B --> C[Provision Infrastructure]
+    %% Defining the Nodes with descriptive shapes and emojis
+    A(🏗️ Infrastructure Pipeline) --> B{🛠️ Terraform Automation}
+    B --> C([🏢 Provision Infrastructure])
 
-    style A fill:#e1f5fe,stroke:#039be5,stroke-width:2px
-    style B fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px
-    style C fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    %% Modern Class Definitions for cleaner styling
+    classDef default font-family:sans-serif,font-weight:bold,color:#333;
+    classDef pipeline fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
+    classDef tool fill:#fff3e0,stroke:#fb8c00,stroke-width:2px;
+    classDef output fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
+
+    %% Applying the styles to the nodes
+    class A pipeline;
+    class B tool;
+    class C output;
 ```
 
 Jenkins
@@ -160,14 +177,14 @@ Jenkins Architecture
 
 ```mermaid
 graph LR
-    %% Main VM Box
-    Master["<b>VM</b><br>⚙️ Jenkins (Master node)<br>☕ Java (Worker node base)"]
+    %% Main Control Plane
+    Master(🖥️ <b>Jenkins VM</b><br>⚙️ Master Node<br>☕ Java Base)
 
     %% Target Environments
-    DEV["<b>DEV</b><br>☕ (Java) ubuntu"]
-    QA["<b>QA</b><br>☕ (Java) Redhat"]
-    UAT["<b>UAT</b><br>☕ (Java) centos"]
-    PROD["<b>PROD</b><br>☕ (Java) windows"]
+    DEV(🐧 <b>DEV Server</b><br>Ubuntu + ☕ Java)
+    QA(🎩 <b>QA Server</b><br>RedHat + ☕ Java)
+    UAT(🐧 <b>UAT Server</b><br>CentOS + ☕ Java)
+    PROD(🪟 <b>PROD Server</b><br>Windows + ☕ Java)
 
     %% Architecture Connections
     Master --> DEV
@@ -175,12 +192,16 @@ graph LR
     Master --> UAT
     Master --> PROD
 
-    %% Styling
-    style Master fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px
-    style DEV fill:#e1f5fe,stroke:#039be5,stroke-width:2px
-    style QA fill:#e1f5fe,stroke:#039be5,stroke-width:2px
-    style UAT fill:#e1f5fe,stroke:#039be5,stroke-width:2px
-    style PROD fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    %% Modern Class Definitions for cleaner styling
+    classDef default font-family:sans-serif,font-weight:bold,color:#333;
+    classDef control fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
+    classDef linux fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
+    classDef windows fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
+
+    %% Applying the styles
+    class Master control;
+    class DEV,QA,UAT linux;
+    class PROD windows;
 ```
 
 Jenkins Job Types
@@ -275,18 +296,28 @@ node {
 
 ```mermaid
 graph LR
-    Start((Start)) --> Build[Stage: Build]
-    Build --> Test[Stage: Test]
-    Test --> Check{Result == SUCCESS?}
-    Check -- Yes --> Success[echo 'Build Succeeded']
-    Check -- No --> Fail[echo 'Build Failed']
+    %% Defining Nodes with descriptive emojis and shapes
+    Start((🏁 Start)) --> Build(🔨 Stage: Build)
+    Build --> Test(🧪 Stage: Test)
+    Test --> Check{{❓ Result == SUCCESS?}}
     
-    style Start fill:#e0e0e0,stroke:#333,stroke-width:2px
-    style Build fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style Test fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style Check fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
-    style Success fill:#e8f5e9,stroke:#43a047,stroke-width:2px
-    style Fail fill:#ffebee,stroke:#c62828,stroke-width:2px
+    Check -- Yes --> Success([✅ Build Succeeded])
+    Check -- No --> Fail([❌ Build Failed])
+    
+    %% Modern Class Definitions for cleaner styling
+    classDef default font-family:sans-serif,font-weight:bold,color:#333;
+    classDef trigger fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px;
+    classDef action fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
+    classDef decision fill:#fff3e0,stroke:#fb8c00,stroke-width:2px;
+    classDef pass fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
+    classDef error fill:#ffebee,stroke:#e53935,stroke-width:2px;
+    
+    %% Applying the styles to the nodes
+    class Start trigger;
+    class Build,Test action;
+    class Check decision;
+    class Success pass;
+    class Fail error;
 ```
 
 2. Declarative Pipeline
@@ -297,25 +328,38 @@ Uses predefined blocks such as:
 
 ```mermaid
 graph TD
-    Pipeline[Pipeline]
+    %% Main Pipeline Block
+    Pipeline(🚀 Pipeline)
     
-    Pipeline --> agent[agent]
-    Pipeline --> ENV[ENV]
-    Pipeline --> parameter[parameter]
-    Pipeline --> triggers[pollSCM<br>Triggers]
-    Pipeline --> Stages[Stages]
+    %% Configuration Directives
+    Pipeline --> agent([🤖 agent])
+    Pipeline --> ENV([🌍 ENV])
+    Pipeline --> parameter([🎛️ parameters])
+    Pipeline --> triggers([⏱️ triggers: pollSCM])
     
-    Stages --> Stage1[Stage]
-    Stage1 --> Steps1[Steps]
+    %% Execution Blocks
+    Pipeline --> Stages{{🚥 Stages}}
     
-    Stages --> Stage2[Stage]
-    Stage2 --> Steps2[Steps]
+    Stages --> Stage1(📦 Stage: Build)
+    Stage1 --> Steps1[/📝 Steps/]
+    
+    Stages --> Stage2(🧪 Stage: Test)
+    Stage2 --> Steps2[/📝 Steps/]
 
-    %% Styling to separate main blocks from stages
-    style Pipeline fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px
-    style Stages fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style Stage1 fill:#e8f5e9,stroke:#43a047,stroke-width:1px
-    style Stage2 fill:#e8f5e9,stroke:#43a047,stroke-width:1px
+    %% Modern Class Definitions for cleaner styling
+    classDef default font-family:sans-serif,font-weight:bold,color:#333;
+    classDef root fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
+    classDef config fill:#fff3e0,stroke:#fb8c00,stroke-width:2px;
+    classDef stagesGroup fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
+    classDef stage fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
+    classDef steps fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px;
+
+    %% Applying the styles
+    class Pipeline root;
+    class agent,ENV,parameter,triggers config;
+    class Stages stagesGroup;
+    class Stage1,Stage2 stage;
+    class Steps1,Steps2 steps;
 ```
 
 ```grovy
