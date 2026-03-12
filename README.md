@@ -1,13 +1,39 @@
 # Pipeline-Documentation
 
-Pipeline
+# Pipeline
 
-DevOps CI/CD & Jenkins Notes
-Software Development Life Cycle (SDLC)
+## Table of Contents
+
+- [Pipeline-Documentation](#pipeline-documentation)
+- [Pipeline](#pipeline)
+  - [Table of Contents](#table-of-contents)
+  - [DevOps CI/CD \& Jenkins Notes](#devops-cicd--jenkins-notes)
+- [Software Development Life Cycle (SDLC)](#software-development-life-cycle-sdlc)
+  - [Stages of SDLC](#stages-of-sdlc)
+- [CI/CD Pipeline Overview](#cicd-pipeline-overview)
+- [Tools used in CI/CD](#tools-used-in-cicd)
+  - [Jenkins](#jenkins)
+  - [Jenkins Architecture](#jenkins-architecture)
+- [1. Master Node](#1-master-node)
+- [2. Agent Nodes (Workers)](#2-agent-nodes-workers)
+  - [Jenkins Architecture](#jenkins-architecture-1)
+  - [Jenkins Job Types](#jenkins-job-types)
+  - [Cron Jobs](#cron-jobs)
+  - [Jenkins Pipeline](#jenkins-pipeline)
+- [1. Scripted Pipeline](#1-scripted-pipeline)
+- [2. Declarative Pipeline](#2-declarative-pipeline)
+  - [Basic Jenkins Declarative Pipeline Example](#basic-jenkins-declarative-pipeline-example)
+  - [Jenkins Installation](#jenkins-installation)
+  - [Jenkins Pipeline Execution](#jenkins-pipeline-execution)
+  - [SonarQube](#sonarqube)
+
+## DevOps CI/CD & Jenkins Notes
+
+# Software Development Life Cycle (SDLC)
 
 SDLC defines the process used to develop software efficiently and systematically.
 
-Stages of SDLC
+## Stages of SDLC
 
 1. Planning
 
@@ -30,7 +56,7 @@ Stages of SDLC
 | Deployment  | DevOps                    |
 | Support     | Maintenance Team          |
 
-CI/CD Pipeline Overview
+# CI/CD Pipeline Overview
 
 Typical CI/CD pipeline flow:
 
@@ -95,7 +121,7 @@ graph LR
     style CD fill:#fafafa,stroke:#bdbdbd,stroke-width:2px,rx:10,ry:10
 ```
 
-Tools used in CI/CD
+# Tools used in CI/CD
 
 1. Jenkins Pipeline
 
@@ -121,7 +147,7 @@ graph TD
     class C output;
 ```
 
-Jenkins
+## Jenkins
 
 Jenkins is an open-source CI/CD automation tool written in Java.
 
@@ -137,13 +163,13 @@ It is used to automate:
 
 Jenkins integrates with different Version Control Systems and DevOps tools through plugins.
 
-Jenkins Architecture
+## Jenkins Architecture
 
 Jenkins follows a Master–Agent architecture.
 
 Components
 
-1. Master Node
+# 1. Master Node
 
 Responsible for:
 
@@ -155,7 +181,7 @@ Responsible for:
 
 - UI interface
 
-2. Agent Nodes (Workers)
+# 2. Agent Nodes (Workers)
 
 Responsible for:
 
@@ -173,7 +199,7 @@ Agents can run on different environments:
 
 - Windows
 
-Jenkins Architecture
+## Jenkins Architecture
 
 ```mermaid
 graph LR
@@ -204,7 +230,7 @@ graph LR
     class PROD windows;
 ```
 
-Jenkins Job Types
+## Jenkins Job Types
 
 There are two types of Jenkins jobs:
 
@@ -232,7 +258,7 @@ Jenkins periodically checks for updates using cron scheduling.
 
 ---
 
-Cron Jobs
+## Cron Jobs
 
 A cron job is a time-based scheduler in Unix/Linux systems used to run scripts at fixed intervals.
 
@@ -250,7 +276,7 @@ Uses:
 
 - Scheduled CI builds
 
-Jenkins Pipeline
+## Jenkins Pipeline
 
 A pipeline defines the entire CI/CD workflow as code.
 
@@ -270,7 +296,7 @@ Types of Jenkins Pipelines
 
 2. Declarative Pipeline
 
-1. Scripted Pipeline
+# 1. Scripted Pipeline
 
 A Groovy-based pipeline with flexible programming logic.
 
@@ -320,7 +346,7 @@ graph LR
     class Fail error;
 ```
 
-2. Declarative Pipeline
+# 2. Declarative Pipeline
 
 A structured and easier-to-read pipeline syntax.
 
@@ -392,7 +418,7 @@ pipeline {
 ```
 
 
-Basic Jenkins Declarative Pipeline Example
+## Basic Jenkins Declarative Pipeline Example
 ```grovy
 pipeline {
 
@@ -417,7 +443,7 @@ pipeline {
 }
 ```
 
-Jenkins Installation
+## Jenkins Installation
 On Master Node
 
 sudo apt update
@@ -431,7 +457,7 @@ sudo apt update
 sudo apt install maven -y
 mvn --version
 
-Jenkins Pipeline Execution
+## Jenkins Pipeline Execution
 
 Steps:
 
@@ -448,7 +474,7 @@ Steps:
 6. Click Build Now
 
 
-SonarQube
+## SonarQube
 
 SonarQube is an open-source code quality and security analysis tool.
 
