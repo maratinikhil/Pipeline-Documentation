@@ -36,18 +36,25 @@ Typical CI/CD pipeline flow:
 
 ```mermaid
 graph LR
-    A[Code] -- push --> B[SCM<br>GitHub]
-    B --> C[Scan<br>SonarQube]
-    C --> D[Build]
-    D --> E[Artifactory]
-    E --> F[Ansible]
+    %% Defining the Nodes with distinct shapes and emojis
+    A(💻 Code) -- push --> B(🐙 SCM: GitHub)
+    B --> C{{🔎 Scan: SonarQube}}
+    C --> D(🔨 Build)
+    D --> E[(📦 Artifactory)]
+    E --> F((🚀 Deploy: Ansible))
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bbf,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bbf,stroke:#333,stroke-width:2px
-    style F fill:#bfb,stroke:#333,stroke-width:2px
+    %% Modern Class Definitions for cleaner styling
+    classDef default font-family:sans-serif,font-weight:bold,color:#333;
+    classDef source fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
+    classDef testing fill:#fff3e0,stroke:#fb8c00,stroke-width:2px;
+    classDef storage fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
+    classDef deploy fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
+
+    %% Applying the styles
+    class A,B,D source;
+    class C testing;
+    class E storage;
+    class F deploy;
 ```
 
 ```mermaid
