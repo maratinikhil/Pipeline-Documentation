@@ -511,13 +511,13 @@ SonarQube Key Features
 
     * XSS vulnerabilities
 
-1. Reliability
+2. Reliability
 
 - Identifies bugs that may cause application failures.
  
 - Ensures stable production applications.
 
-1. Maintainability
+3. Maintainability
 
     * Detects:
 
