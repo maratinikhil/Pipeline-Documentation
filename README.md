@@ -31,8 +31,8 @@
   - [3. Maintainability](#3-maintainability)
   - [4. Security Hotspots](#4-security-hotspots)
   - [5. Dependency Risks](#5-dependency-risks)
-  - [6.  Code Coverage](#6--code-coverage)
-  - [7.  Code Duplication](#7--code-duplication)
+  - [6. Code Coverage](#6-code-coverage)
+  - [7. Code Duplication](#7-code-duplication)
 - [SonarQube](#sonarqube-1)
 - [Types of Code Coverage in SonarQube](#types-of-code-coverage-in-sonarqube)
   - [1. Line Coverage](#1-line-coverage)
@@ -57,22 +57,22 @@
     - [2. Number of Days](#2-number-of-days)
 - [Implementing Jenkins Pipeline with SonarCloud](#implementing-jenkins-pipeline-with-sonarcloud)
   - [1. Infrastructure Setup](#1-infrastructure-setup)
-- [2. Master Node Setup](#2-master-node-setup)
-- [3. Worker Node Setup](#3-worker-node-setup)
-- [4. Access Jenkins](#4-access-jenkins)
-- [5. Get Jenkins Initial Password](#5-get-jenkins-initial-password)
-- [6. Install Jenkins Plugins](#6-install-jenkins-plugins)
-- [7. Configure Jenkins Credentials](#7-configure-jenkins-credentials)
-- [8. Create a Worker Node (Agent)](#8-create-a-worker-node-agent)
-- [9. Node Configuration](#9-node-configuration)
+  - [2. Master Node Setup](#2-master-node-setup)
+  - [3. Worker Node Setup](#3-worker-node-setup)
+  - [4. Access Jenkins](#4-access-jenkins)
+  - [5. Get Jenkins Initial Password](#5-get-jenkins-initial-password)
+  - [6. Install Jenkins Plugins](#6-install-jenkins-plugins)
+  - [7. Configure Jenkins Credentials](#7-configure-jenkins-credentials)
+  - [8. Create a Worker Node (Agent)](#8-create-a-worker-node-agent)
+  - [9. Node Configuration](#9-node-configuration)
     - [Remote Root Directory](#remote-root-directory)
     - [Labels](#labels)
     - [Launch Method](#launch-method)
-- [10. Verify Agent Connection](#10-verify-agent-connection)
-- [11. Create a Jenkins Pipeline](#11-create-a-jenkins-pipeline)
-- [12. Configure Source Code Management](#12-configure-source-code-management)
-- [13. Install SonarQube Scanner Plugin](#13-install-sonarqube-scanner-plugin)
-- [14. Restart Jenkins](#14-restart-jenkins)
+  - [10. Verify Agent Connection](#10-verify-agent-connection)
+  - [11. Create a Jenkins Pipeline](#11-create-a-jenkins-pipeline)
+  - [12. Configure Source Code Management](#12-configure-source-code-management)
+  - [13. Install SonarQube Scanner Plugin](#13-install-sonarqube-scanner-plugin)
+  - [14. Restart Jenkins](#14-restart-jenkins)
 - [Summary](#summary-1)
 - [Jenkins Pipeline with SonarCloud](#jenkins-pipeline-with-sonarcloud)
   - [Pipeline Workflow](#pipeline-workflow)
@@ -180,18 +180,18 @@ graph LR
         A(💻 Code) -- push --> B(🐙 SCM: GitHub)
         B --> C{{🔎 Scan: SonarQube}}
         C --> D(🐳 Build: Docker)
-        
+
         D -- Files --> E[(📦 Artifactory)]
         D -- docker --> F([🖼️ Images])
-        
+
         F --> G[(🗄️ Registry)]
     end
-    
+
     subgraph CD [Continuous Deployment Phase]
         E --> H{{☸️ K8s Cluster}}
         G --> H
     end
-    
+
     %% Modern Class Definitions for cleaner styling
     classDef default font-family:sans-serif,font-weight:bold,color:#333;
     classDef source fill:#e3f2fd,stroke:#1e88e5,stroke-width:2px;
@@ -199,7 +199,7 @@ graph LR
     classDef storage fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
     classDef deploy fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
     classDef intermediary fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px,stroke-dasharray: 5 5;
-    
+
     %% Applying the styles to the nodes
     class A,B,D source;
     class C testing;
@@ -375,11 +375,11 @@ It is written inside a file called: Jenkinsfile
 
 Benefits:
 
-* Pipeline as Code
+- Pipeline as Code
 
-* Version controlled
+- Version controlled
 
-* Easier automation
+- Easier automation
 
 Types of Jenkins Pipelines
 
@@ -409,18 +409,16 @@ node {
 
 }
 
-
-
 ```mermaid
 graph LR
     %% Defining Nodes with descriptive emojis and shapes
     Start((🏁 Start)) --> Build(🔨 Stage: Build)
     Build --> Test(🧪 Stage: Test)
     Test --> Check{{❓ Result == SUCCESS?}}
-    
+
     Check -- Yes --> Success([✅ Build Succeeded])
     Check -- No --> Fail([❌ Build Failed])
-    
+
     %% Modern Class Definitions for cleaner styling
     classDef default font-family:sans-serif,font-weight:bold,color:#333;
     classDef trigger fill:#f5f5f5,stroke:#9e9e9e,stroke-width:2px;
@@ -428,7 +426,7 @@ graph LR
     classDef decision fill:#fff3e0,stroke:#fb8c00,stroke-width:2px;
     classDef pass fill:#e8f5e9,stroke:#43a047,stroke-width:2px;
     classDef error fill:#ffebee,stroke:#e53935,stroke-width:2px;
-    
+
     %% Applying the styles to the nodes
     class Start trigger;
     class Build,Test action;
@@ -447,19 +445,19 @@ Uses predefined blocks such as:
 graph TD
     %% Main Pipeline Block
     Pipeline(🚀 Pipeline)
-    
+
     %% Configuration Directives
     Pipeline --> agent([🤖 agent])
     Pipeline --> ENV([🌍 ENV])
     Pipeline --> parameter([🎛️ parameters])
     Pipeline --> triggers([⏱️ triggers: pollSCM])
-    
+
     %% Execution Blocks
     Pipeline --> Stages{{🚥 Stages}}
-    
+
     Stages --> Stage1(📦 Stage: Build)
     Stage1 --> Steps1[/📝 Steps/]
-    
+
     Stages --> Stage2(🧪 Stage: Test)
     Stage2 --> Steps2[/📝 Steps/]
 
@@ -508,8 +506,8 @@ pipeline {
 }
 ```
 
-
 ## Basic Jenkins Declarative Pipeline Example
+
 ```grovy
 pipeline {
 
@@ -535,6 +533,7 @@ pipeline {
 ```
 
 ## Jenkins Installation
+
 On Master Node
 
 sudo apt update
@@ -564,20 +563,18 @@ Steps:
 
 6. Click Build Now
 
-
 ## SonarQube
 
 - SonarQube is an open-source code quality and security analysis tool.
 
 - It scans application source code to detect:
+  - Bugs
 
-    * Bugs
+  - Security vulnerabilities
 
-    * Security vulnerabilities
+  - Code smells
 
-    * Code smells
-
-    * Technical debt
+  - Technical debt
 
 Why Use SonarQube
 It helps check the overall code health before deployment.
@@ -587,17 +584,16 @@ SonarQube Key Features
 ## 1. Security
 
 - Detects vulnerabilities like:
+  - SQL Injection
 
-    * SQL Injection
+  - Hardcoded credentials
 
-    * Hardcoded credentials
-
-    * XSS vulnerabilities
+  - XSS vulnerabilities
 
 ## 2. Reliability
 
 - Identifies bugs that may cause application failures.
- 
+
 - Ensures stable production applications.
 
 ## 3. Maintainability
@@ -609,22 +605,19 @@ SonarQube Key Features
     * Technical debt
 
 - Helps keep code:
+  - Clean
 
-    * Clean
+  - Readable
 
-    * Readable
-
-    * Easy to modify
+  - Easy to modify
 
 ## 4. Security Hotspots
 
 - Flags sensitive areas such as:
+  - Encryption
 
-    * Encryption
-
-    * Authentication
-  
-    * Authorization
+  - Authentication
+  - Authorization
 
 - Requires manual developer review.
 
@@ -634,12 +627,14 @@ SonarQube Key Features
 
 - Prevents insecure packages from entering production.
 
-## 6.  Code Coverage
+## 6. Code Coverage
+
 - Shows how much code is covered by unit tests.
 - Encourages better testing practices.
 - Example: **80% coverage threshold** for a quality gate.
 
-## 7.  Code Duplication
+## 7. Code Duplication
+
 - Detects duplicated code blocks.
 - Helps reduce redundancy.
 - Improves code maintainability.
@@ -666,9 +661,9 @@ SonarQube helps enforce **quality gates in CI/CD pipelines** before deployment.
 
 # Types of Code Coverage in SonarQube
 
-1. Line Coverage  
-2. Branch Coverage  
-3. Overall Coverage  
+1. Line Coverage
+2. Branch Coverage
+3. Overall Coverage
 
 ---
 
@@ -728,10 +723,10 @@ Branch Coverage = 50%
 
 ## Summary
 
-| Coverage Type | Description |
-|---------------|------------|
-| Line Coverage | Percentage of code lines executed by tests |
-| Branch Coverage | Percentage of decision paths tested |
+| Coverage Type    | Description                                 |
+| ---------------- | ------------------------------------------- |
+| Line Coverage    | Percentage of code lines executed by tests  |
+| Branch Coverage  | Percentage of decision paths tested         |
 | Overall Coverage | Combined metric of line and branch coverage |
 
 ---
@@ -752,8 +747,8 @@ In our CI/CD pipeline, after code is pushed:
 
 There are **three ways** to install SonarQube:
 
-1. By using **CLI (SonarScanner)** to install SonarQube  
-2. **SonarCloud** – 30 days free trial  
+1. By using **CLI (SonarScanner)** to install SonarQube
+2. **SonarCloud** – 30 days free trial
 3. Using **Docker**
 
 ---
@@ -761,12 +756,15 @@ There are **three ways** to install SonarQube:
 # How to Set Up SonarCloud
 
 ### Step 1: Create an Account
+
 - Sign up using **GitHub**
 
 ### Step 2: Create an Organization
+
 - Create a **new organization** inside SonarCloud.
 
 ### Step 3: Create a Project
+
 - Create a **project inside the chosen repository**.
 
 ---
@@ -774,9 +772,11 @@ There are **three ways** to install SonarQube:
 # How to Integrate Jenkins with SonarQube / SonarCloud
 
 ## Step 1: Install Plugins
+
 - Install the **SonarQube Plugin** in Jenkins.
 
 ## Step 2: Configure Jenkins with SonarQube
+
 - Connect **Jenkins to SonarQube / SonarCloud**.
 
 ### Flow
@@ -819,7 +819,7 @@ Create the following nodes:
 
 ---
 
-# 2. Master Node Setup
+## 2. Master Node Setup
 
 Update system packages:
 
@@ -837,7 +837,7 @@ Install **Jenkins** using the **official Jenkins documentation**.
 
 ---
 
-# 3. Worker Node Setup
+## 3. Worker Node Setup
 
 Update packages:
 
@@ -853,7 +853,7 @@ sudo apt install openjdk-21-jdk -y
 
 ---
 
-# 4. Access Jenkins
+## 4. Access Jenkins
 
 Open Jenkins in your browser:
 
@@ -865,7 +865,7 @@ http://<public-ip>:8080
 
 ---
 
-# 5. Get Jenkins Initial Password
+## 5. Get Jenkins Initial Password
 
 Run the following command on the **Master Node**:
 
@@ -883,20 +883,20 @@ Enter this password in the Jenkins setup page.
 
 ---
 
-# 6. Install Jenkins Plugins
+## 6. Install Jenkins Plugins
 
 - Click **Install Suggested Plugins**.
 - Jenkins will automatically download and install the required plugins.
 
 ---
 
-# 7. Configure Jenkins Credentials
+## 7. Configure Jenkins Credentials
 
 Provide appropriate **admin credentials** to complete the setup.
 
 ---
 
-# 8. Create a Worker Node (Agent)
+## 8. Create a Worker Node (Agent)
 
 Go to:
 
@@ -906,7 +906,7 @@ Manage Jenkins → Nodes → New Node
 
 ---
 
-# 9. Node Configuration
+## 9. Node Configuration
 
 Provide the following details:
 
@@ -937,7 +937,7 @@ Click **Save**.
 
 ---
 
-# 10. Verify Agent Connection
+## 10. Verify Agent Connection
 
 - Go to the **Node page**
 - Click **Logs**
@@ -946,7 +946,7 @@ If the **Agent status is Online**, it means the **Master Node and Worker Node ar
 
 ---
 
-# 11. Create a Jenkins Pipeline
+## 11. Create a Jenkins Pipeline
 
 1. Click **New Item**
 2. Select **Pipeline**
@@ -954,7 +954,7 @@ If the **Agent status is Online**, it means the **Master Node and Worker Node ar
 
 ---
 
-# 12. Configure Source Code Management
+## 12. Configure Source Code Management
 
 Write the pipeline using **SCM (Git Repository)**.
 
@@ -966,7 +966,7 @@ GitHub Repository
 
 ---
 
-# 13. Install SonarQube Scanner Plugin
+## 13. Install SonarQube Scanner Plugin
 
 Go to:
 
@@ -981,7 +981,7 @@ Install the plugin.
 
 ---
 
-# 14. Restart Jenkins
+## 14. Restart Jenkins
 
 After the plugin installation:
 
@@ -991,13 +991,13 @@ After the plugin installation:
 
 # Summary
 
-| Component | Purpose |
-|----------|--------|
-| Jenkins | CI/CD automation tool |
-| SonarQube / SonarCloud | Static code analysis |
-| Quality Gate | Ensures minimum code quality (85%) |
-| Master Node | Jenkins controller |
-| Worker Node | Executes pipeline tasks |
+| Component              | Purpose                            |
+| ---------------------- | ---------------------------------- |
+| Jenkins                | CI/CD automation tool              |
+| SonarQube / SonarCloud | Static code analysis               |
+| Quality Gate           | Ensures minimum code quality (85%) |
+| Master Node            | Jenkins controller                 |
+| Worker Node            | Executes pipeline tasks            |
 
 ---
 
@@ -1105,7 +1105,7 @@ flowchart LR
 
 ```groovy
 pipeline {
-    agent {label 'SPC'} 
+    agent {label 'SPC'}
 
     triggers {
         pollSCM('* * * * *')
@@ -1118,7 +1118,7 @@ pipeline {
                 git url: 'https://github.com/maratinikhil/spring-petclinic.git',
                     branch: 'main'
             }
-        } 
+        }
 
         stage ('build & scan') {
             steps {
@@ -1132,7 +1132,7 @@ pipeline {
                         """
                     }
                 }
-            } 
+            }
         }
 
     }
@@ -1161,11 +1161,11 @@ pipeline {
 
 ## Archived Artifacts
 
-| Artifact | Purpose |
-|--------|--------|
-| `target/*.jar` | Built application package |
-| `surefire-reports/*.xml` | Test execution reports |
-| JUnit Reports | Displays test results in Jenkins dashboard |
+| Artifact                 | Purpose                                    |
+| ------------------------ | ------------------------------------------ |
+| `target/*.jar`           | Built application package                  |
+| `surefire-reports/*.xml` | Test execution reports                     |
+| JUnit Reports            | Displays test results in Jenkins dashboard |
 
 DevOps engineers can download these artifacts directly from the **Jenkins build artifacts section**.
 
@@ -1297,10 +1297,10 @@ flowchart TD
 
 # Summary
 
-| Repository Type | Description |
-|----------------|-------------|
-| Local Repository | Stores internally built artifacts |
-| Remote Repository | Proxy for external repositories |
+| Repository Type    | Description                                          |
+| ------------------ | ---------------------------------------------------- |
+| Local Repository   | Stores internally built artifacts                    |
+| Remote Repository  | Proxy for external repositories                      |
 | Virtual Repository | Combines multiple repositories into one access point |
 
 ---
@@ -1336,7 +1336,7 @@ flowchart LR
 
 ```groovy
 pipeline {
-    agent {label 'SPC'} 
+    agent {label 'SPC'}
 
     triggers {
         pollSCM('* * * * *')
@@ -1349,7 +1349,7 @@ pipeline {
                 git url: 'https://github.com/maratinikhil/spring-petclinic.git',
                     branch: 'main'
             }
-        } 
+        }
 
         stage ('build & scan') {
             steps {
@@ -1363,7 +1363,7 @@ pipeline {
                         """
                     }
                 }
-            } 
+            }
         }
 
         stage ('Artifactory - Jfrog'){
@@ -1380,7 +1380,7 @@ pipeline {
                     }'''
                 )
 
-                rtPublishBuildInfo(serverId: 'Jfrog')    
+                rtPublishBuildInfo(serverId: 'Jfrog')
             }
         }
     }
@@ -1445,10 +1445,10 @@ Username with Password
 
 4. Provide the following details:
 
-- **Username** → JFrog Username  
-- **Password** → Encrypted Password  
-- **Secret Key** → Generated Token  
-- **Description** → JFrog Credentials  
+- **Username** → JFrog Username
+- **Password** → Encrypted Password
+- **Secret Key** → Generated Token
+- **Description** → JFrog Credentials
 
 5. Click **Save**
 
@@ -1467,11 +1467,11 @@ After adding the credentials:
 
 Artifacts uploaded from Jenkins:
 
-| Artifact | Location |
-|--------|--------|
-| `.jar` file | JFrog Artifactory repository |
-| Test reports | Jenkins artifacts section |
-| Build metadata | JFrog Build Info |
+| Artifact       | Location                     |
+| -------------- | ---------------------------- |
+| `.jar` file    | JFrog Artifactory repository |
+| Test reports   | Jenkins artifacts section    |
+| Build metadata | JFrog Build Info             |
 
 ---
 
@@ -1508,7 +1508,7 @@ flowchart LR
 
 ```groovy
 pipeline {
-    agent {label 'SPC'} 
+    agent {label 'SPC'}
 
     triggers {
         pollSCM('* * * * *')
@@ -1529,7 +1529,7 @@ pipeline {
                 git url: 'https://github.com/maratinikhil/spring-petclinic.git',
                     branch: 'main'
             }
-        } 
+        }
 
         stage ('build & scan') {
             steps {
@@ -1547,13 +1547,13 @@ pipeline {
                     }
 
                 }
-            } 
+            }
         }
 
         stage ('Artifactory - Jfrog'){
             steps {
 
-                rtUpload (  
+                rtUpload (
                     serverId: 'Jfrog',
                     spec: '''{
                         "files": [
@@ -1565,7 +1565,7 @@ pipeline {
                     }'''
                 )
 
-                rtPublishBuildInfo(serverId: 'Jfrog')    
+                rtPublishBuildInfo(serverId: 'Jfrog')
 
             }
         }
@@ -1614,10 +1614,10 @@ mvn ${params.CHOICE}
 Example execution:
 
 | Selected Parameter | Maven Command Executed |
-|--------------------|------------------------|
-| package | `mvn package` |
-| clean install | `mvn clean install` |
-| verify | `mvn verify` |
+| ------------------ | ---------------------- |
+| package            | `mvn package`          |
+| clean install      | `mvn clean install`    |
+| verify             | `mvn verify`           |
 
 ---
 
@@ -1724,22 +1724,24 @@ pipeline{
 
 # Pipeline Explanation
 
-| Stage | Description |
-|------|-------------|
-| Git Checkout | Retrieves the Python project from GitHub |
-| Virtual Environment | Creates an isolated Python environment |
+| Stage                | Description                                        |
+| -------------------- | -------------------------------------------------- |
+| Git Checkout         | Retrieves the Python project from GitHub           |
+| Virtual Environment  | Creates an isolated Python environment             |
 | Install Dependencies | Installs required packages from `requirements.txt` |
 
 ---
 
 # Tools Used
 
-| Tool | Purpose |
-|----|----|
-| Jenkins | CI/CD automation |
-| GitHub | Source code repository |
-| Python | Application runtime |
-| pip | Python dependency manager |
+| Tool                | Purpose                       |
+| ------------------- | ----------------------------- |
+| Jenkins             | CI/CD automation              |
+| GitHub              | Source code repository        |
+| Python              | Application runtime           |
+| pip                 | Python dependency manager     |
 | Virtual Environment | Isolates project dependencies |
 
 ---
+
+[def]: #2-master-node-setup
