@@ -26,6 +26,14 @@
   - [Jenkins Installation](#jenkins-installation)
   - [Jenkins Pipeline Execution](#jenkins-pipeline-execution)
   - [SonarQube](#sonarqube)
+- [SonarQube](#sonarqube-1)
+- [Types of Code Coverage in SonarQube](#types-of-code-coverage-in-sonarqube)
+  - [1. Line Coverage](#1-line-coverage)
+    - [Example](#example)
+  - [2. Branch Coverage](#2-branch-coverage)
+    - [Example](#example-1)
+  - [3. Overall Coverage](#3-overall-coverage)
+  - [Summary](#summary)
 
 ## DevOps CI/CD & Jenkins Notes
 
@@ -480,13 +488,13 @@ SonarQube is an open-source code quality and security analysis tool.
 
 It scans application source code to detect:
 
-* Bugs
+        * Bugs
 
-* Security vulnerabilities
+        * Security vulnerabilities
 
-* Code smells
+        * Code smells
 
-* Technical debt
+        * Technical debt
 
 Why Use SonarQube
 It helps check the overall code health before deployment.
@@ -495,50 +503,152 @@ SonarQube Key Features
 
 1. Security
 
-Detects vulnerabilities like:
+    Detects vulnerabilities like:
 
-* SQL Injection
+        * SQL Injection
 
-* Hardcoded credentials
+        * Hardcoded credentials
 
-* XSS vulnerabilities
+        * XSS vulnerabilities
 
-2. Reliability
+1. Reliability
 
-Identifies bugs that may cause application failures.
+    Identifies bugs that may cause application failures.
 
-Ensures stable production applications.
+    Ensures stable production applications.
 
 3. Maintainability
 
-* Detects:
+        * Detects:
 
-* Code smells
+        * Code smells
 
-* Technical debt
+        * Technical debt
 
-Helps keep code:
+    Helps keep code:
 
-* Clean
+        * Clean
 
-* Readable
+        * Readable
 
-* Easy to modify
+        * Easy to modify
 
 4. Security Hotspots
 
-Flags sensitive areas such as:
+    Flags sensitive areas such as:
 
-* Encryption
+        * Encryption
 
-* Authentication
+        * Authentication
   
-* Authorization
+        * Authorization
 
-Requires manual developer review.
+    Requires manual developer review.
 
 5. Dependency Risks
 
-Scans third-party libraries for known vulnerabilities.
+    Scans third-party libraries for known vulnerabilities.
 
-Prevents insecure packages from entering production.
+   Prevents insecure packages from entering production.
+
+6.  Code Coverage
+- Shows how much code is covered by unit tests.
+- Encourages better testing practices.
+- Example: **80% coverage threshold** for a quality gate.
+
+7.  Code Duplication
+- Detects duplicated code blocks.
+- Helps reduce redundancy.
+- Improves code maintainability.
+
+---
+
+# SonarQube
+
+**SonarQube** is a **static code analysis tool** used to ensure code quality by analyzing source code and identifying potential issues.
+
+It checks for:
+
+- Vulnerabilities
+- Reliability issues
+- Maintainability problems
+- Code coverage
+- Code duplications
+- Dependency risks
+- Security hotspots
+
+SonarQube helps enforce **quality gates in CI/CD pipelines** before deployment.
+
+---
+
+# Types of Code Coverage in SonarQube
+
+1. Line Coverage  
+2. Branch Coverage  
+3. Overall Coverage  
+
+---
+
+## 1. Line Coverage
+
+- Shows the **percentage of lines of code executed by automated tests**.
+- Verifies whether each line of code is executed by at least one test.
+- Helps identify **untested lines of code**.
+- Displayed according to **project folder or package structure**.
+
+### Example
+
+If a project has **100 lines of code** and tests execute **80 lines**:
+
+```
+Line Coverage = 80%
+```
+
+---
+
+## 2. Branch Coverage
+
+- Measures how many **decision paths** are tested in the code.
+
+Examples of decision paths:
+
+- `if / else`
+- `switch` cases
+- Ternary operators
+- Logical conditions
+
+Branch coverage is displayed according to the **project structure**, allowing developers to view coverage by:
+
+- Module
+- Package
+- Class
+- File
+
+### Example
+
+If a condition contains **4 branches** and tests cover **2 branches**:
+
+```
+Branch Coverage = 50%
+```
+
+---
+
+## 3. Overall Coverage
+
+- A **combined measurement** of:
+  - Line Coverage
+  - Branch Coverage
+- Represents the **total percentage of code covered by tests across the entire project**.
+
+---
+
+## Summary
+
+| Coverage Type | Description |
+|---------------|------------|
+| Line Coverage | Percentage of code lines executed by tests |
+| Branch Coverage | Percentage of decision paths tested |
+| Overall Coverage | Combined metric of line and branch coverage |
+
+---
