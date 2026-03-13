@@ -26,6 +26,13 @@
   - [Jenkins Installation](#jenkins-installation)
   - [Jenkins Pipeline Execution](#jenkins-pipeline-execution)
   - [SonarQube](#sonarqube)
+  - [1. Security](#1-security)
+  - [2. Reliability](#2-reliability)
+  - [3. Maintainability](#3-maintainability)
+  - [4. Security Hotspots](#4-security-hotspots)
+  - [5. Dependency Risks](#5-dependency-risks)
+  - [6.  Code Coverage](#6--code-coverage)
+  - [7.  Code Duplication](#7--code-duplication)
 - [SonarQube](#sonarqube-1)
 - [Types of Code Coverage in SonarQube](#types-of-code-coverage-in-sonarqube)
   - [1. Line Coverage](#1-line-coverage)
@@ -501,7 +508,7 @@ It helps check the overall code health before deployment.
 
 SonarQube Key Features
 
-1. Security
+## 1. Security
 
 - Detects vulnerabilities like:
 
@@ -511,13 +518,13 @@ SonarQube Key Features
 
     * XSS vulnerabilities
 
-2. Reliability
+## 2. Reliability
 
 - Identifies bugs that may cause application failures.
  
 - Ensures stable production applications.
 
-3. Maintainability
+## 3. Maintainability
 
     * Detects:
 
@@ -533,7 +540,7 @@ SonarQube Key Features
 
     * Easy to modify
 
-4. Security Hotspots
+## 4. Security Hotspots
 
 - Flags sensitive areas such as:
 
@@ -545,18 +552,18 @@ SonarQube Key Features
 
 - Requires manual developer review.
 
-5. Dependency Risks
+## 5. Dependency Risks
 
 - Scans third-party libraries for known vulnerabilities.
 
 - Prevents insecure packages from entering production.
 
-6.  Code Coverage
+## 6.  Code Coverage
 - Shows how much code is covered by unit tests.
 - Encourages better testing practices.
 - Example: **80% coverage threshold** for a quality gate.
 
-7.  Code Duplication
+## 7.  Code Duplication
 - Detects duplicated code blocks.
 - Helps reduce redundancy.
 - Improves code maintainability.
