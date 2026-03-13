@@ -484,17 +484,17 @@ Steps:
 
 ## SonarQube
 
-SonarQube is an open-source code quality and security analysis tool.
+- SonarQube is an open-source code quality and security analysis tool.
 
-It scans application source code to detect:
+- It scans application source code to detect:
 
-        * Bugs
+    * Bugs
 
-        * Security vulnerabilities
+    * Security vulnerabilities
 
-        * Code smells
+    * Code smells
 
-        * Technical debt
+    * Technical debt
 
 Why Use SonarQube
 It helps check the overall code health before deployment.
@@ -503,53 +503,53 @@ SonarQube Key Features
 
 1. Security
 
-    Detects vulnerabilities like:
+- Detects vulnerabilities like:
 
-        * SQL Injection
+    * SQL Injection
 
-        * Hardcoded credentials
+    * Hardcoded credentials
 
-        * XSS vulnerabilities
+    * XSS vulnerabilities
 
 1. Reliability
 
-    Identifies bugs that may cause application failures.
+- Identifies bugs that may cause application failures.
+ 
+- Ensures stable production applications.
 
-    Ensures stable production applications.
+1. Maintainability
 
-3. Maintainability
+    * Detects:
 
-        * Detects:
+    * Code smells
 
-        * Code smells
+    * Technical debt
 
-        * Technical debt
+- Helps keep code:
 
-    Helps keep code:
+    * Clean
 
-        * Clean
+    * Readable
 
-        * Readable
-
-        * Easy to modify
+    * Easy to modify
 
 4. Security Hotspots
 
-    Flags sensitive areas such as:
+- Flags sensitive areas such as:
 
-        * Encryption
+    * Encryption
 
-        * Authentication
+    * Authentication
   
-        * Authorization
+    * Authorization
 
-    Requires manual developer review.
+- Requires manual developer review.
 
 5. Dependency Risks
 
-    Scans third-party libraries for known vulnerabilities.
+- Scans third-party libraries for known vulnerabilities.
 
-   Prevents insecure packages from entering production.
+- Prevents insecure packages from entering production.
 
 6.  Code Coverage
 - Shows how much code is covered by unit tests.
